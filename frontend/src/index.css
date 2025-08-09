@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+/* App.css or index.css */
+@media (max-width: 600px) {
+  .form-group {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+/* Global dark mode */
+.dark-mode {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+}
+
+/* Optional: adjust specific elements */
+.dark-mode .card {
+  background-color: #1e1e1e;
+  color: white;
+}
+.dark-mode .navbar {
+  background-color: #1c1c1c !important;
+}
