@@ -18,7 +18,7 @@ const Login = () => {
     try {
       const res = await api.post('/auth/login', { email, password });
 
-      // Support both token and accessToken shapes
+      
       const token = res?.data?.token ?? res?.data?.accessToken;
       const user = res?.data?.user;
 
@@ -26,10 +26,10 @@ const Login = () => {
         throw new Error('Login response missing token or user');
       }
 
-      // Persist via context (writes to localStorage)
+      
       login(user, token);
 
-      // Also set axios default immediately (prevents first-request race)
+      
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
       navigate('/');
@@ -44,7 +44,7 @@ const Login = () => {
   return (
     <div className="container-fluid vh-100 p-0">
       <div className="row g-0 h-100">
-        {/* Left side with travel image and quote */}
+       
         <div className="col-md-6 d-none d-md-block">
           <div 
             className="h-100 d-flex flex-column justify-content-center align-items-center p-5"
@@ -62,7 +62,7 @@ const Login = () => {
           </div>
         </div>
 
-        {/* Right side with login form */}
+        
         <div className="col-md-6 d-flex align-items-center justify-content-center">
           <div className="w-100 p-4" style={{ maxWidth: '400px' }}>
             <h2 className="text-center mb-4">Welcome</h2>
