@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import api from '../api/api'; // adjust path if your structure differs
+import api from '../api/api'; 
 
 const AuthContext = createContext();
 
@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
 
   const [token, setToken] = useState(() => localStorage.getItem('token') || '');
 
-  // Keep axios default header in sync with token (page refresh / logout)
+  
   useEffect(() => {
     if (token) {
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
-  // Login persists user+token and sets axios default immediately
+  
   const login = (userData, authToken) => {
     if (!authToken) {
       console.error('login() called without a valid token');
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     api.defaults.headers.common.Authorization = `Bearer ${authToken}`;
   };
 
-  // Logout clears everything
+  
   const logout = () => {
     setUser(null);
     setToken('');
