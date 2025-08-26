@@ -1,5 +1,6 @@
 import Tour from '../models/Tour.js';
 
+//create tour
 export const createTour = async (req, res) => {
   try {
     const { title, description, price, image } = req.body;
@@ -13,6 +14,7 @@ export const createTour = async (req, res) => {
   }
 };
 
+//Get all tours
 export const getAllTours = async (req, res) => {
   const tours = await Tour.find();
   res.json(tours);
@@ -23,8 +25,7 @@ export const getTourById = async (req, res) => {
   res.json(tour);
 };
 
-
-// DELETE /api/tours/:id
+//delete tours
 export const deleteTour = async (req, res) => {
   try {
     const deletedTour = await Tour.findByIdAndDelete(req.params.id);
@@ -39,13 +40,13 @@ export const deleteTour = async (req, res) => {
 };
 
 
-// PUT /api/tours/:id
+// update tours
 export const updateTour = async (req, res) => {
   try {
     const updatedTour = await Tour.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true } // returns updated document
+      { new: true } 
     );
 
     if (!updatedTour) {
