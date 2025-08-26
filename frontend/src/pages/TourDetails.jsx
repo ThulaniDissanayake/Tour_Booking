@@ -30,7 +30,7 @@ const TourDetails = () => {
       <div
         className="card shadow-lg"
         style={{
-          borderRadius: '0', // no rounded corners
+          borderRadius: '0', 
           maxWidth: '600px',
           width: '100%',
           transition: 'transform 0.3s ease',
