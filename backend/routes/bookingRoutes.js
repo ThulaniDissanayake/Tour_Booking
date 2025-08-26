@@ -12,12 +12,14 @@ import adminMiddleware from '../middleware/adminMiddleware.js';
 
 const router = express.Router();
 
+// User routes
 router.post('/', authMiddleware, createBooking);
-router.get('/', authMiddleware, adminMiddleware, getAllBookings);
 router.get('/my', authMiddleware, getUserBookings);
-router.delete('/:id', authMiddleware, deleteBooking);
 router.get('/:id', authMiddleware, getBookingById);
 router.put('/:id', authMiddleware, updateBooking);
+router.delete('/:id', authMiddleware, deleteBooking);
 
+// Admin routes
+router.get('/', authMiddleware, adminMiddleware, getAllBookings);
 
 export default router;
