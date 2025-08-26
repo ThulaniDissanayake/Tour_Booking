@@ -7,14 +7,10 @@ const BookingEdit = () => {
   const { token } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
-  const [booking, setBooking] = useState(null);
+  const [form, setForm] = useState({ name: '', email: '', numberOfPeople: 1, date: '' });
   const [loading, setLoading] = useState(true);
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    numberOfPeople: 1,
-    date: '',
-  });
+  const [editable, setEditable] = useState(true); // can user edit?
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (!token) {
@@ -25,58 +21,64 @@ const BookingEdit = () => {
 
     const fetchBooking = async () => {
       try {
-        const res = await api.get(`/bookings/${id.trim()}`, {
+        const res = await api.get(`/bookings/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setBooking(res.data);
+        const b = res.data;
+
+        // If booking has no user info, prevent editing
+        if (!b.user) {
+          setEditable(false);
+          setMessage('This booking has no user info. Editing is disabled.');
+        }
+
         setForm({
-          name: res.data.name,
-          email: res.data.email,
-          numberOfPeople: res.data.numberOfPeople,
-          date: new Date(res.data.date).toISOString().split('T')[0],
+          name: b.name || '',
+          email: b.email || '',
+          numberOfPeople: b.numberOfPeople || 1,
+          date: b.date ? new Date(b.date).toISOString().split('T')[0] : '',
         });
-      } catch {
-        alert('Failed to load booking');
+      } catch (err) {
+        console.error('Fetch booking error:', err);
+        alert(err.response?.data?.message || 'Failed to load booking');
         navigate('/my-bookings');
       } finally {
         setLoading(false);
       }
     };
+
     fetchBooking();
   }, [id, navigate, token]);
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+    if (!editable) return;
 
     if (!form.name || !form.email || form.numberOfPeople <= 0 || !form.date) {
       alert('Please fill all fields correctly.');
       return;
     }
-
     try {
-      await api.put(`/bookings/${id.trim()}`, form, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await api.put(`/bookings/${id}`, form, { headers: { Authorization: `Bearer ${token}` } });
       alert('Booking updated successfully');
       navigate('/my-bookings');
-    } catch {
-      alert('Failed to update booking');
+    } catch (err) {
+      console.error('Update booking error:', err);
+      alert(err.response?.data?.message || 'Failed to update booking');
     }
   };
 
   const handleCancel = async () => {
     if (!window.confirm('Are you sure you want to cancel this booking?')) return;
     try {
-      await api.delete(`/bookings/${id.trim()}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await api.delete(`/bookings/${id}`, { headers: { Authorization: `Bearer ${token}` } });
       alert('Booking cancelled');
       navigate('/my-bookings');
-    } catch {
-      alert('Failed to cancel booking');
+    } catch (err) {
+      console.error('Cancel booking error:', err);
+      alert(err.response?.data?.message || 'Failed to cancel booking');
     }
   };
 
@@ -84,7 +86,8 @@ const BookingEdit = () => {
 
   return (
     <div className="container mt-5" style={{ maxWidth: '500px' }}>
-      <h2>Edit Booking</h2>
+      <h2>Change Your Booking Details</h2>
+      {message && <p className="text-warning">{message}</p>}
       <form onSubmit={handleUpdate}>
         <div className="mb-3">
           <label>Name:</label>
@@ -94,9 +97,9 @@ const BookingEdit = () => {
             value={form.name}
             onChange={handleChange}
             required
+            disabled={!editable}
           />
         </div>
-
         <div className="mb-3">
           <label>Email:</label>
           <input
@@ -106,9 +109,9 @@ const BookingEdit = () => {
             value={form.email}
             onChange={handleChange}
             required
+            disabled={!editable}
           />
         </div>
-
         <div className="mb-3">
           <label>Number of People:</label>
           <input
@@ -119,9 +122,9 @@ const BookingEdit = () => {
             value={form.numberOfPeople}
             onChange={handleChange}
             required
+            disabled={!editable}
           />
         </div>
-
         <div className="mb-3">
           <label>Date:</label>
           <input
@@ -131,10 +134,10 @@ const BookingEdit = () => {
             value={form.date}
             onChange={handleChange}
             required
+            disabled={!editable}
           />
         </div>
-
-        <button type="submit" className="btn btn-primary me-2">
+        <button type="submit" className="btn btn-primary me-2" disabled={!editable}>
           Update Booking
         </button>
         <button type="button" className="btn btn-danger" onClick={handleCancel}>
