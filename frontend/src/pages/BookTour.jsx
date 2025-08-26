@@ -58,7 +58,7 @@ const BookTour = () => {
         style={{
           width: '100%',
           maxWidth: '500px',
-          backgroundColor: 'rgba(255, 255, 255, 0.9)', // transparent white
+          backgroundColor: 'rgba(255, 255, 255, 0.9)', 
         }}
       >
         <h2 className="text-center mb-4">Book Your Tour</h2>
