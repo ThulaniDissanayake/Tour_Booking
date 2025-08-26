@@ -32,7 +32,7 @@ const Profile = () => {
       className="container mt-5 p-4 rounded shadow-lg"
       style={{ maxWidth: '800px', backgroundColor: '#f8f9fa' }}
     >
-      {/* Profile Header */}
+      
       <div className="d-flex align-items-center mb-4 border-bottom pb-3">
         <i
           className="bi bi-person-circle text-primary"
@@ -46,7 +46,7 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* Bookings Section */}
+      
       <h4 className="mt-4 mb-3">
         <i className="bi bi-journal-check me-2"></i> My Bookings
       </h4>
