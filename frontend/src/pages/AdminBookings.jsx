@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import api from '../api/api'; // Axios instance with auth interceptor
+import api from '../api/api'; 
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
@@ -12,7 +12,7 @@ const AdminBookings = () => {
 
   const fetchBookings = async () => {
     try {
-      const res = await api.get('/bookings'); // Admin route, requires auth token
+      const res = await api.get('/bookings'); 
       setBookings(res.data);
     } catch (error) {
       alert('Failed to fetch bookings');
@@ -26,7 +26,7 @@ const AdminBookings = () => {
     fetchBookings();
   }, []);
 
-  // Filter bookings by user name (case-insensitive)
+  // Filter bookings by user name 
   const filteredBookings = bookings.filter((b) =>
     b.name?.toLowerCase().includes(search.toLowerCase())
   );
