@@ -14,7 +14,7 @@ const AdminToursManage = () => {
   const [editingTourId, setEditingTourId] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Fetch tours when component mounts or token changes
+  
   useEffect(() => {
     if (token) fetchTours();
   }, [token]);
@@ -34,7 +34,6 @@ const AdminToursManage = () => {
     }
   };
 
-  // Handle form changes
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -63,7 +62,7 @@ const AdminToursManage = () => {
     }
   };
 
-  // Set form for editing
+  
   const handleEdit = (tour) => {
     setForm({
       title: tour.title,
