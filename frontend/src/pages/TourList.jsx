@@ -13,7 +13,7 @@ const TourList = () => {
 
   return (
     <>
-      {/* Hero Image Section */}
+      
       <div
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e')`,
@@ -50,13 +50,13 @@ const TourList = () => {
         </p>
       </div>
 
-      {/* Tour Cards */}
+      
       <div className="container mt-5">
         <div className="row">
           {tours.map(tour => (
             <div className="col-md-4 mb-4" key={tour._id}>
               <div className="card shadow-sm h-100">
-                {/* Show image if available */}
+                
                 {tour.image && (
                   <img
                     src={tour.image}
