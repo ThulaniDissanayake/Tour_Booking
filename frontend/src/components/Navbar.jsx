@@ -21,7 +21,7 @@ const Navbar = () => {
 
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 
-  // Close dropdown if clicked outside
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -170,7 +170,7 @@ const Navbar = () => {
                   aria-expanded={dropdownOpen}
                   aria-haspopup="true"
                 >
-                  {/* You can replace this with an <img> avatar or SVG icon */}
+                  
                   <span role="img" aria-label="user">
                     👤
                   </span>
