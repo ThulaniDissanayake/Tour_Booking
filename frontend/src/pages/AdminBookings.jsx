@@ -145,7 +145,7 @@ const AdminBookings = () => {
               <div
                 className="card shadow-sm h-100 border-0 position-relative"
                 style={{
-                  backgroundColor: 'rgba(0, 0, 0, 0.55)', // semi-transparent black
+                  backgroundColor: 'rgba(0, 0, 0, 0.55)', 
                   color: 'white',
                 }}
               >
