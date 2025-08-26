@@ -100,7 +100,7 @@ const BookingEdit = () => {
 
   return (
     <div className="min-vh-100" style={{ backgroundColor: '#f8f9fa' }}>
-      {/* Success Alert */}
+      
       {successAlert && (
         <div className="alert alert-success alert-dismissible fade show m-3 position-fixed top-0 end-0" style={{zIndex: 9999}} role="alert">
           <FaCheck className="me-2" />
@@ -109,7 +109,7 @@ const BookingEdit = () => {
         </div>
       )}
       
-      {/* Header with transparent background */}
+      
       <div className="py-4" style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)' }}>
         <div className="container">
           <button className="btn btn-outline-primary mb-3" onClick={() => navigate('/my-bookings')}>
@@ -124,7 +124,7 @@ const BookingEdit = () => {
         <div className="row justify-content-center">
           <div className="col-lg-8">
             <div className="card shadow border-0 overflow-hidden">
-              {/* Card header with subtle background */}
+              
               <div className="card-header py-4" style={{ backgroundColor: 'rgba(13, 110, 253, 0.05)' }}>
                 <h4 className="card-title mb-0 text-center text-dark">Booking Details</h4>
               </div>
@@ -233,7 +233,7 @@ const BookingEdit = () => {
               </div>
             </div>
             
-            {/* Info Card */}
+            
             <div className="card mt-4 border-0 shadow-sm">
               <div className="card-body d-flex align-items-center">
                 <FaQuestionCircle className="text-primary me-3 fs-4" />
