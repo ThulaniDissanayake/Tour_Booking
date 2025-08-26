@@ -40,7 +40,7 @@ const Home = () => {
 
   return (
     <div className="container-fluid vh-100 p-0 position-relative">
-      {/* Full-page background image with blur and transparency */}
+     
       <div
         className="position-absolute w-100 h-100"
         style={{
@@ -53,14 +53,14 @@ const Home = () => {
       ></div>
 
       <div className="row g-0 h-100 position-relative">
-        {/* Left side with welcome content */}
+      
         <div className="col-md-6 d-flex align-items-center justify-content-center p-5">
           <div>
             <h1
               className="welcome-heading mb-4"
               style={{
                 color: '#fff',
-                fontSize: '4rem', // Much bigger font size
+                fontSize: '4rem', 
                 fontWeight: 'bold'
               }}
             >
@@ -83,10 +83,10 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Right side with rotating images (rectangular corners) */}
+       
         <div className="col-md-6 h-100 position-relative">
           <div className="h-100 d-flex flex-column justify-content-center align-items-center p-4">
-            {/* Carousel container */}
+            
             <div className="position-relative" style={{ width: '100%', height: '60%' }}>
               {images.map((image, index) => (
                 <div
@@ -103,7 +103,7 @@ const Home = () => {
                     zIndex: index === activeIndex ? 1 : 0
                   }}
                 >
-                  {/* Image without rounded corners */}
+                  
                   <div
                     style={{
                       width: '90%',
@@ -111,7 +111,7 @@ const Home = () => {
                       backgroundImage: `url(${image.url})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
-                      borderRadius: '0', // No rounded corners
+                      borderRadius: '0', 
                       boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
                       transform: index === activeIndex ? 'scale(1)' : 'scale(0.9)',
                       position: 'relative'
@@ -133,7 +133,7 @@ const Home = () => {
               ))}
             </div>
 
-            {/* Navigation dots */}
+            
             <div className="d-flex mt-4">
               {images.map((_, index) => (
                 <button
