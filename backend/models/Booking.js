@@ -5,14 +5,14 @@ const bookingSchema = new mongoose.Schema({
   email: String,
   numberOfPeople: Number,  
   date: {
-    type: Date,       // Important: this tells Mongoose this field stores dates
+    type: Date,       
     required: true,
-  },         // use this name to match controller
+  },         
   tour: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Tour',
   },
-  user: {                           // add user reference for authenticated user
+  user: {                           
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
