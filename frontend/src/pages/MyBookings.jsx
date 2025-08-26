@@ -63,7 +63,7 @@ const MyBookings = () => {
       <h2 className="mb-4">Booking History</h2>
       {bookings.map((b) => (
         <div key={b._id} className="card mb-3 shadow-sm position-relative" style={{ borderLeft: '5px solid #007bff', backgroundColor: '#f8f9fa' }}>
-          {/* Delete button */}
+          
           <button
             onClick={() => handleDelete(b._id)}
             style={{ position: 'absolute', top: '8px', right: '12px', border: 'none', background: 'transparent', color: '#dc3545', fontWeight: 'bold', fontSize: '20px', cursor: 'pointer' }}
@@ -72,7 +72,7 @@ const MyBookings = () => {
             &times;
           </button>
 
-          {/* Edit button */}
+          
           <button
             onClick={() => handleEdit(b._id)}
             style={{ position: 'absolute', top: '8px', right: '48px', border: 'none', background: 'transparent', color: '#007bff', fontWeight: 'bold', fontSize: '20px', cursor: 'pointer' }}
