@@ -6,7 +6,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    // Skip attaching token for the login call itself
+    
     const url = `${config.baseURL || ''}${config.url || ''}`;
     if (url.includes('/auth/login')) return config;
 
@@ -14,13 +14,13 @@ api.interceptors.request.use(
     if (token === 'null' || token === 'undefined') token = null;
 
     if (token) {
-      // Don’t overwrite if caller set a custom header
+      
       config.headers = config.headers || {};
       if (!config.headers.Authorization) {
         config.headers.Authorization = `Bearer ${token}`;
       }
     } else if (config.headers?.Authorization) {
-      // Make sure we don’t send a stale header
+  
       delete config.headers.Authorization;
     }
 
