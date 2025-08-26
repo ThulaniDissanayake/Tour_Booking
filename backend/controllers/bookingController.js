@@ -1,10 +1,10 @@
 import Booking from '../models/Booking.js';
 
-// ✅ Create Booking (user)
+// Create Booking (user)
 export const createBooking = async (req, res) => {
   try {
     const { name, email, numberOfPeople, tourId, date } = req.body;
-    const userId = req.user._id;  // ✅ Attach logged-in user
+    const userId = req.user._id;  // Attach logged-in user
 
     const booking = new Booking({
       user: userId,
@@ -24,7 +24,7 @@ export const createBooking = async (req, res) => {
 };
 
 
-// ✅ Admin: Get all bookings
+// Admin: Get all bookings
 export const getAllBookings = async (req, res) => {
   try {
     const bookings = await Booking.find()
@@ -37,7 +37,7 @@ export const getAllBookings = async (req, res) => {
   }
 };
 
-// ✅ User: Get logged-in user’s bookings
+// User: Get logged-in user’s bookings
 export const getUserBookings = async (req, res) => {
   try {
     const userId = req.user._id;  // ✅ Always comes from token
@@ -51,7 +51,7 @@ export const getUserBookings = async (req, res) => {
   }
 };
 
-// ✅ Get booking by ID (owner or admin)
+// Get booking by ID (owner or admin)
 export const getBookingById = async (req, res) => {
   try {
     const booking = await Booking.findById(req.params.id)
@@ -75,7 +75,7 @@ export const getBookingById = async (req, res) => {
   }
 };
 
-// ✅ Update booking (owner only)
+// Update booking (owner only)
 export const updateBooking = async (req, res) => {
   try {
     const { id } = req.params;
@@ -101,7 +101,7 @@ export const updateBooking = async (req, res) => {
   }
 };
 
-// ✅ Delete booking (owner or admin)
+// Delete booking (owner or admin)
 export const deleteBooking = async (req, res) => {
   try {
     const { id } = req.params;
