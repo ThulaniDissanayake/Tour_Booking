@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// Create the context
+
 const DarkModeContext = createContext();
 
-// Provider component
+
 export const DarkModeProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(() => {
-    // Load from localStorage if exists
+    
     const saved = localStorage.getItem('darkMode');
     return saved === 'true';
   });
@@ -27,5 +27,5 @@ export const DarkModeProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use dark mode context
+
 export const useDarkMode = () => useContext(DarkModeContext);
