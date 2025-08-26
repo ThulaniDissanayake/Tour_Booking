@@ -29,7 +29,7 @@ const Register = () => {
   return (
     <div className="container-fluid vh-100 p-0">
       <div className="row g-0 h-100">
-        {/* Left side with travel image and quote */}
+        
         <div className="col-md-6 d-none d-md-block">
           <div
             className="h-100 d-flex flex-column justify-content-center align-items-center p-5"
@@ -48,7 +48,7 @@ const Register = () => {
           </div>
         </div>
 
-        {/* Right side with registration form */}
+        
         <div className="col-md-6 d-flex align-items-center justify-content-center">
           <div className="w-100 p-4" style={{ maxWidth: '400px' }}>
             <h2 className="text-center mb-4">Create an Account</h2>
@@ -103,7 +103,7 @@ const Register = () => {
                 />
               </div>
 
-              {/* Role selection */}
+              
               <div className="mb-4">
                 <label htmlFor="role" className="form-label">
                   Register as
