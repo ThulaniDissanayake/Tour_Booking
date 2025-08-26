@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../api/api';
+import { FaCheck } from 'react-icons/fa';
 
 const BookTour = () => {
   const { id } = useParams();
@@ -9,6 +10,7 @@ const BookTour = () => {
   const [email, setEmail] = useState('');
   const [numberOfPeople, setNumberOfPeople] = useState(1);
   const [selectedTour, setSelectedTour] = useState(id);
+  const [successAlert, setSuccessAlert] = useState('');
 
   const navigate = useNavigate();
 
@@ -32,8 +34,10 @@ const BookTour = () => {
         email,
         numberOfPeople,
       });
-      alert('Booking successful');
-      navigate('/my-bookings');
+      setSuccessAlert('Booking successful! Redirecting to your bookings...');
+      setTimeout(() => {
+        navigate('/my-bookings');
+      }, 1500);
     } catch {
       alert('Booking failed');
     }
@@ -52,6 +56,15 @@ const BookTour = () => {
         padding: '20px',
       }}
     >
+      {/* Success Alert */}
+      {successAlert && (
+        <div className="alert alert-success alert-dismissible fade show m-3 position-fixed top-0 end-0" style={{zIndex: 9999}} role="alert">
+          <FaCheck className="me-2" />
+          {successAlert}
+          <button type="button" className="btn-close" onClick={() => setSuccessAlert('')}></button>
+        </div>
+      )}
+      
       <form
         onSubmit={handleBooking}
         className="p-4 shadow bg-white rounded"
