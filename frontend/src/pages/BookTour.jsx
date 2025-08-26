@@ -9,7 +9,7 @@ const BookTour = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [numberOfPeople, setNumberOfPeople] = useState(1);
-  const [selectedTour, setSelectedTour] = useState(id);
+  const [selectedTour ,setSelectedTour] = useState(id);
   const [successAlert, setSuccessAlert] = useState('');
 
   const navigate = useNavigate();
