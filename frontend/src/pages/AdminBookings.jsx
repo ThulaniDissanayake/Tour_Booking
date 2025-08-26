@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../api/api'; 
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { FaCheck } from 'react-icons/fa';
 
 const backgroundImageUrl = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e';
 
@@ -9,6 +10,7 @@ const AdminBookings = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const [successAlert, setSuccessAlert] = useState('');
 
   const fetchBookings = async () => {
     try {
@@ -79,7 +81,12 @@ const AdminBookings = () => {
     try {
       await api.delete(`/bookings/${id}`);
       setBookings((prev) => prev.filter((b) => b._id !== id));
-      alert('Booking deleted successfully');
+      setSuccessAlert('Booking deleted successfully!');
+      
+      // Clear success message after 3 seconds
+      setTimeout(() => {
+        setSuccessAlert('');
+      }, 3000);
     } catch (error) {
       alert('Failed to delete booking');
       console.error('Delete booking error:', error);
@@ -100,6 +107,15 @@ const AdminBookings = () => {
         color: 'white',
       }}
     >
+      {/* Success Alert */}
+      {successAlert && (
+        <div className="alert alert-success alert-dismissible fade show m-3 position-fixed top-0 end-0" style={{zIndex: 9999}} role="alert">
+          <FaCheck className="me-2" />
+          {successAlert}
+          <button type="button" className="btn-close" onClick={() => setSuccessAlert('')}></button>
+        </div>
+      )}
+      
       <div
         style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '50px', marginBottom: '20px' }}
       >
