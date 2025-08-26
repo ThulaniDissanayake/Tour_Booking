@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../api/api';
 import { useAuth } from '../context/AuthContext';
+import { FaCheck } from 'react-icons/fa';
 
 const AdminToursManage = () => {
   const { token } = useAuth();
@@ -13,6 +14,7 @@ const AdminToursManage = () => {
   });
   const [editingTourId, setEditingTourId] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [successAlert, setSuccessAlert] = useState('');
 
   
   useEffect(() => {
@@ -48,14 +50,19 @@ const AdminToursManage = () => {
       if (editingTourId) {
         await api.put(`/tours/${editingTourId}`, form, config);
         setEditingTourId(null);
-        alert('Tour updated successfully!');
+        setSuccessAlert('Tour updated successfully!');
       } else {
         await api.post('/tours', form, config);
-        alert('Tour created successfully!');
+        setSuccessAlert('Tour created successfully!');
       }
 
       setForm({ title: '', description: '', price: '', image: '' });
       fetchTours();
+      
+      // Clear success message after 3 seconds
+      setTimeout(() => {
+        setSuccessAlert('');
+      }, 3000);
     } catch (error) {
       console.error('Error saving tour:', error);
       alert('Failed to save tour. Make sure you are logged in as admin.');
@@ -81,8 +88,13 @@ const AdminToursManage = () => {
     try {
       const config = { headers: { Authorization: `Bearer ${token}` } };
       await api.delete(`/tours/${id}`, config);
-      alert('Tour deleted successfully!');
+      setSuccessAlert('Tour deleted successfully!');
       fetchTours();
+      
+      // Clear success message after 3 seconds
+      setTimeout(() => {
+        setSuccessAlert('');
+      }, 3000);
     } catch (error) {
       console.error('Error deleting tour:', error);
       alert('Failed to delete tour.');
@@ -115,6 +127,16 @@ const AdminToursManage = () => {
   return (
     <div style={styles.wrapper}>
       <div style={styles.background} />
+      
+      {/* Success Alert */}
+      {successAlert && (
+        <div className="alert alert-success alert-dismissible fade show m-3 position-fixed top-0 end-0" style={{zIndex: 9999}} role="alert">
+          <FaCheck className="me-2" />
+          {successAlert}
+          <button type="button" className="btn-close" onClick={() => setSuccessAlert('')}></button>
+        </div>
+      )}
+      
       <div style={styles.container}>
         <h2 style={styles.heading}>Manage Tours</h2>
 
