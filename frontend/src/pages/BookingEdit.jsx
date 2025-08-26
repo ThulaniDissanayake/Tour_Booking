@@ -9,7 +9,7 @@ const BookingEdit = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: '', email: '', numberOfPeople: 1, date: '' });
   const [loading, setLoading] = useState(true);
-  const [editable, setEditable] = useState(true); // can user edit?
+  const [editable, setEditable] = useState(true); 
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const BookingEdit = () => {
         });
         const b = res.data;
 
-        // If booking has no user info, prevent editing
+        
         if (!b.user) {
           setEditable(false);
           setMessage('This booking has no user info. Editing is disabled.');
