@@ -26,7 +26,7 @@ const AdminBookings = () => {
     fetchBookings();
   }, []);
 
-  // Filter bookings by user name 
+  
   const filteredBookings = bookings.filter((b) =>
     b.name?.toLowerCase().includes(search.toLowerCase())
   );
